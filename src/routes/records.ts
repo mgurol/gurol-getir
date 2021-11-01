@@ -15,6 +15,7 @@ interface CustomRequest<T> extends Request {
 
 const router = express.Router();
 
+// validation schema for request body
 export const BodySchema: Schema = {
   fields: {
     endDate: "Date",
@@ -30,6 +31,7 @@ router.post(
   [],
   async (req: CustomRequest<RecordQueryModel>, res: Response) => {
     const validation = await validate(req.body, BodySchema);
+    // return body definition (default code -1)
     let returnBody: {
       code: Number;
       msg: String;
@@ -48,6 +50,12 @@ router.post(
       };
       res.status(400).send(returnBody);
     } else {
+      // in order (query):
+      // 1. match dates
+      // 2. unwind the array in the object (counts)
+      // 3. group on 'key' as _id
+      // 4. compare the grouped count (totalCount) to min and max value
+      // 5. project the result to fit the output format
       const records = await Record.aggregate([
         {
           $match: {

@@ -18,6 +18,7 @@ interface RecordDoc extends mongoose.Document {
   value: String;
 }
 
+// every property is defaulted as "required = true"
 const recordSchema = new mongoose.Schema({
   key: {
     type: String,
@@ -43,6 +44,7 @@ recordSchema.statics.build = (attr: IRecord) => {
 
 const Record = mongoose.model<RecordDoc, recordModelInterface>('Record', recordSchema)
 
+//default build
 Record.build({
   key: 'SOME-KEY',
   createdAt: new Date('2015-03-08T13:40:13.165+00:00'),

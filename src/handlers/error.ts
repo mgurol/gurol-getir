@@ -6,6 +6,7 @@ export type Schema = {
 };
 
 const required = (obj: any, required: string[]) => {
+  // undefined check
   for (let key of required) {
     if (obj[key] === undefined)
       return {
@@ -32,6 +33,7 @@ export const validate = async (obj: any, model: Schema) => {
   }
 
   for (let key of Object.keys(obj)) {
+    // different conditions for if/else
     const dateCheck =
       !moment(obj[key], "YYYY-MM-DD", true).isValid() &&
       model.fields[key] === "Date";

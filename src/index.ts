@@ -8,10 +8,10 @@ mongoose.connect(
   process.env.MONGODB_ENDPOINT || "",
   {},
   () => {
-    console.log("connected to database");
+    console.log("Connected to database.");
   }
 );
 
 app.listen(process.env.PORT || 25800, () => {
-  console.log("Hello");
+  console.log("Server Online, wait for DB.");
 });
