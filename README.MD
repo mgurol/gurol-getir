@@ -1,7 +1,7 @@
 
 ## Getir Assignment (Mehmet Gürol)
 
-Heroku POST api: https://gurol-getir.herokuapp.com/api/fetch
+Heroku POST API: https://gurol-getir.herokuapp.com/api/fetch
 
 ### Prerequisites
 
